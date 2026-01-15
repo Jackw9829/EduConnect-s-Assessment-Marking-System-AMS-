@@ -1,2 +1,11 @@
-# EduConnect-s-Assessment-Marking-System-AMS-
-By using this system, student can download and submit their assessment and review their grade. However, instructor can provides comments, assigns a grade, and completes the evaluation process.  Once all submissions are marked, the Exam Administrator verifies the grades and officially releases the results.
+
+  # Assessment & Marking System
+
+  This is a code bundle for Assessment & Marking System. The original project is available at https://www.figma.com/design/euo0bQpz6CdVyGjtXPeUhd/Assessment---Marking-System.
+
+  ## Running the code
+
+  Run `npm i` to install the dependencies.
+
+  Run `npm run dev` to start the development server.
+  
