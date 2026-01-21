@@ -46,9 +46,11 @@ export default function App() {
 
       if (response.ok) {
         const profile = await response.json();
+        console.log('User profile loaded:', profile);
         setUserProfile(profile);
       } else {
         // Fallback if profile fetch fails
+        console.log('Profile fetch failed, using fallback role:', role);
         setUserProfile({ role });
       }
     } catch (error) {
