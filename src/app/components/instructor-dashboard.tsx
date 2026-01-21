@@ -185,6 +185,9 @@ export function InstructorDashboard({ accessToken, userProfile, onLogout }: Inst
     setIsCreatingCourse(true);
 
     try {
+      console.log('Creating course with data:', { name: courseName, description: courseDesc });
+      console.log('Using access token:', accessToken ? 'Token present' : 'No token');
+      
       const response = await fetch(
         `https://${projectId}.supabase.co/functions/v1/make-server-f64b0eb2/courses`,
         {
@@ -200,14 +203,19 @@ export function InstructorDashboard({ accessToken, userProfile, onLogout }: Inst
         }
       );
 
-      if (!response.ok) throw new Error('Failed to create course');
+      const responseData = await response.json();
+      console.log('Response:', response.status, responseData);
+
+      if (!response.ok) {
+        throw new Error(responseData.error || 'Failed to create course');
+      }
 
       toast.success('Course created successfully!');
       setCourseName('');
       setCourseDesc('');
       fetchData();
     } catch (error: any) {
-      console.error('Create error:', error);
+      console.error('Create course error:', error);
       toast.error(error.message || 'Failed to create course');
     } finally {
       setIsCreatingCourse(false);
