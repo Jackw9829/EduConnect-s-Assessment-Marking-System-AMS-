@@ -4,7 +4,7 @@ import { StudentDashboard } from './components/student-dashboard';
 import { InstructorDashboard } from './components/instructor-dashboard';
 import { AdminDashboard } from './components/admin-dashboard';
 import { supabase } from '@/lib/supabase-client';
-import { projectId } from '/utils/supabase/info';
+import { projectId, publicAnonKey } from '/utils/supabase/info';
 import { Toaster } from './components/ui/sonner';
 
 export default function App() {
@@ -40,6 +40,7 @@ export default function App() {
         {
           headers: {
             'Authorization': `Bearer ${token}`,
+            'apikey': publicAnonKey,
           },
         }
       );
