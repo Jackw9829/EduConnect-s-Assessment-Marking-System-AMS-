@@ -44,7 +44,7 @@ export function AdminDashboard({ accessToken, userProfile, onLogout }: AdminDash
         `https://${projectId}.supabase.co/functions/v1/make-server-f64b0eb2/courses`,
         {
           headers: {
-            'Authorization': `Bearer ${publicAnonKey}`,
+            'Authorization': `Bearer ${accessToken}`,
             'apikey': publicAnonKey,
           },
         }
@@ -57,7 +57,7 @@ export function AdminDashboard({ accessToken, userProfile, onLogout }: AdminDash
         `https://${projectId}.supabase.co/functions/v1/make-server-f64b0eb2/assessments`,
         {
           headers: {
-            'Authorization': `Bearer ${publicAnonKey}`,
+            'Authorization': `Bearer ${accessToken}`,
             'apikey': publicAnonKey,
           },
         }

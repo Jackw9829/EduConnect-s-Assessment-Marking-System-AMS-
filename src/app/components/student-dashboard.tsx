@@ -39,7 +39,7 @@ export function StudentDashboard({ accessToken, userProfile, onLogout }: Student
         `https://${projectId}.supabase.co/functions/v1/make-server-f64b0eb2/materials`,
         {
           headers: {
-            'Authorization': `Bearer ${publicAnonKey}`,
+            'Authorization': `Bearer ${accessToken}`,
             'apikey': publicAnonKey,
           }
         }
@@ -52,7 +52,7 @@ export function StudentDashboard({ accessToken, userProfile, onLogout }: Student
         `https://${projectId}.supabase.co/functions/v1/make-server-f64b0eb2/assessments`,
         {
           headers: {
-            'Authorization': `Bearer ${publicAnonKey}`,
+            'Authorization': `Bearer ${accessToken}`,
             'apikey': publicAnonKey,
           }
         }
