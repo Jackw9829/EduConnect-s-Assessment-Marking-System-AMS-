@@ -12,6 +12,12 @@ const supabase = createClient(
   Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!,
 );
 
+// Client for auth (uses anon key for user token verification)
+const supabaseAnon = createClient(
+  Deno.env.get('SUPABASE_URL')!,
+  Deno.env.get('SUPABASE_ANON_KEY')!,
+);
+
 // Enable logger
 app.use('*', logger(console.log));
 
@@ -19,12 +25,11 @@ app.use('*', logger(console.log));
 app.use(
   "/*",
   cors({
-    origin: "*",
+    origin: ["https://jackw9829.github.io"],
     allowHeaders: ["Content-Type", "Authorization", "apikey", "x-client-info"],
     allowMethods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     exposeHeaders: ["Content-Length"],
     maxAge: 600,
-    credentials: true,
   }),
 );
 
@@ -105,7 +110,7 @@ app.get("/make-server-f64b0eb2/auth/profile", async (c) => {
       return c.json({ error: 'No authorization token' }, 401);
     }
     
-    const { data: { user }, error } = await supabase.auth.getUser(accessToken);
+    const { data: { user }, error } = await supabaseAnon.auth.getUser(accessToken);
     
     if (error || !user) {
       return c.json({ error: 'Unauthorized' }, 401);
@@ -136,7 +141,7 @@ app.get("/make-server-f64b0eb2/auth/profile", async (c) => {
 app.post("/make-server-f64b0eb2/courses", async (c) => {
   try {
     const accessToken = c.req.header('Authorization')?.split(' ')[1];
-    const { data: { user }, error } = await supabase.auth.getUser(accessToken);
+    const { data: { user }, error } = await supabaseAnon.auth.getUser(accessToken);
     
     if (error || !user?.id) {
       return c.json({ error: 'Unauthorized' }, 401);
@@ -185,7 +190,7 @@ app.get("/make-server-f64b0eb2/courses", async (c) => {
 app.post("/make-server-f64b0eb2/materials/upload", async (c) => {
   try {
     const accessToken = c.req.header('Authorization')?.split(' ')[1];
-    const { data: { user }, error } = await supabase.auth.getUser(accessToken);
+    const { data: { user }, error } = await supabaseAnon.auth.getUser(accessToken);
     
     if (error || !user?.id) {
       return c.json({ error: 'Unauthorized' }, 401);
@@ -266,7 +271,7 @@ app.get("/make-server-f64b0eb2/materials", async (c) => {
 app.get("/make-server-f64b0eb2/materials/:id/download", async (c) => {
   try {
     const accessToken = c.req.header('Authorization')?.split(' ')[1];
-    const { data: { user }, error } = await supabase.auth.getUser(accessToken);
+    const { data: { user }, error } = await supabaseAnon.auth.getUser(accessToken);
     
     if (error || !user?.id) {
       return c.json({ error: 'Unauthorized' }, 401);
@@ -301,7 +306,7 @@ app.get("/make-server-f64b0eb2/materials/:id/download", async (c) => {
 app.post("/make-server-f64b0eb2/assessments", async (c) => {
   try {
     const accessToken = c.req.header('Authorization')?.split(' ')[1];
-    const { data: { user }, error } = await supabase.auth.getUser(accessToken);
+    const { data: { user }, error } = await supabaseAnon.auth.getUser(accessToken);
     
     if (error || !user?.id) {
       return c.json({ error: 'Unauthorized' }, 401);
@@ -370,7 +375,7 @@ app.get("/make-server-f64b0eb2/assessments", async (c) => {
 app.post("/make-server-f64b0eb2/submissions", async (c) => {
   try {
     const accessToken = c.req.header('Authorization')?.split(' ')[1];
-    const { data: { user }, error } = await supabase.auth.getUser(accessToken);
+    const { data: { user }, error } = await supabaseAnon.auth.getUser(accessToken);
     
     if (error || !user?.id) {
       return c.json({ error: 'Unauthorized' }, 401);
@@ -439,7 +444,7 @@ app.post("/make-server-f64b0eb2/submissions", async (c) => {
 app.get("/make-server-f64b0eb2/submissions", async (c) => {
   try {
     const accessToken = c.req.header('Authorization')?.split(' ')[1];
-    const { data: { user }, error } = await supabase.auth.getUser(accessToken);
+    const { data: { user }, error } = await supabaseAnon.auth.getUser(accessToken);
     
     if (error || !user?.id) {
       return c.json({ error: 'Unauthorized' }, 401);
@@ -469,7 +474,7 @@ app.get("/make-server-f64b0eb2/submissions", async (c) => {
 app.get("/make-server-f64b0eb2/submissions/:id/download", async (c) => {
   try {
     const accessToken = c.req.header('Authorization')?.split(' ')[1];
-    const { data: { user }, error } = await supabase.auth.getUser(accessToken);
+    const { data: { user }, error } = await supabaseAnon.auth.getUser(accessToken);
     
     if (error || !user?.id) {
       return c.json({ error: 'Unauthorized' }, 401);
@@ -504,7 +509,7 @@ app.get("/make-server-f64b0eb2/submissions/:id/download", async (c) => {
 app.post("/make-server-f64b0eb2/grades", async (c) => {
   try {
     const accessToken = c.req.header('Authorization')?.split(' ')[1];
-    const { data: { user }, error } = await supabase.auth.getUser(accessToken);
+    const { data: { user }, error } = await supabaseAnon.auth.getUser(accessToken);
     
     if (error || !user?.id) {
       return c.json({ error: 'Unauthorized' }, 401);
@@ -567,7 +572,7 @@ app.post("/make-server-f64b0eb2/grades", async (c) => {
 app.put("/make-server-f64b0eb2/grades/:id/verify", async (c) => {
   try {
     const accessToken = c.req.header('Authorization')?.split(' ')[1];
-    const { data: { user }, error } = await supabase.auth.getUser(accessToken);
+    const { data: { user }, error } = await supabaseAnon.auth.getUser(accessToken);
     
     if (error || !user?.id) {
       return c.json({ error: 'Unauthorized' }, 401);
@@ -617,7 +622,7 @@ app.put("/make-server-f64b0eb2/grades/:id/verify", async (c) => {
 app.get("/make-server-f64b0eb2/grades", async (c) => {
   try {
     const accessToken = c.req.header('Authorization')?.split(' ')[1];
-    const { data: { user }, error } = await supabase.auth.getUser(accessToken);
+    const { data: { user }, error } = await supabaseAnon.auth.getUser(accessToken);
     
     if (error || !user?.id) {
       return c.json({ error: 'Unauthorized' }, 401);
