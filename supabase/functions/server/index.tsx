@@ -25,7 +25,7 @@ app.use('*', logger(console.log));
 app.use(
   "/*",
   cors({
-    origin: ["https://jackw9829.github.io"],
+    origin: ["https://jackw9829.github.io/EduConnect-s-Assessment-Marking-System-AMS-/"],
     allowHeaders: ["Content-Type", "Authorization", "apikey", "x-client-info"],
     allowMethods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     exposeHeaders: ["Content-Length"],

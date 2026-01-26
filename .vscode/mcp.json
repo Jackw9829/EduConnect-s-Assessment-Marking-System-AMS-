@@ -1,20 +1,34 @@
+// // {
+// // 	"servers": {
+// // 		"com.figma.mcp/mcp": {
+// // 			"type": "http",
+// // 			"url": "https://mcp.figma.com/mcp",
+// // 			"gallery": "https://api.mcp.github.com",
+// // 			"version": "1.0.3"
+// // 		}
+// // 	},
+// // 	"inputs": []
+// // }
+
 // {
-// 	"servers": {
-// 		"com.figma.mcp/mcp": {
-// 			"type": "http",
-// 			"url": "https://mcp.figma.com/mcp",
-// 			"gallery": "https://api.mcp.github.com",
-// 			"version": "1.0.3"
-// 		}
-// 	},
-// 	"inputs": []
+//   "servers": {
+//     "supabase": {
+//       "type": "http",
+//       "url": "https://mcp.supabase.com/mcp?project_ref=qhlutyrdpvzdhkluiixi"
+//     }
+//   }
 // }
 
 {
   "servers": {
-    "supabase": {
-      "type": "http",
-      "url": "https://mcp.supabase.com/mcp?project_ref=qhlutyrdpvzdhkluiixi"
+    "com.supabase/mcp": {
+      "type": "local",
+      "command": "npx",
+      "args": [
+        "@supabase/mcp-server-supabase@latest",
+        "--project-ref",
+        "YOUR_PROJECT_REF"
+      ]
     }
   }
 }
