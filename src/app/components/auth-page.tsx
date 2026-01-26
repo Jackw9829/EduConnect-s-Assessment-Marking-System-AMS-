@@ -62,7 +62,7 @@ export function AuthPage({ onLogin }: AuthPageProps) {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${publicAnonKey}`,
+            'apikey': publicAnonKey,
           },
           body: JSON.stringify({
             email: signUpEmail,
