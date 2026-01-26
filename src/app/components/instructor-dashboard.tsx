@@ -58,7 +58,12 @@ export function InstructorDashboard({ accessToken, userProfile, onLogout }: Inst
       // Fetch courses
       const coursesRes = await fetch(
         `https://${projectId}.supabase.co/functions/v1/make-server-f64b0eb2/courses`,
-        { headers: { 'Authorization': `Bearer ${publicAnonKey}` } }
+        {
+          headers: {
+            'Authorization': `Bearer ${publicAnonKey}`,
+            'apikey': publicAnonKey,
+          },
+        }
       );
       const coursesData = await coursesRes.json();
       setCourses(Array.isArray(coursesData) ? coursesData : []);
@@ -66,7 +71,12 @@ export function InstructorDashboard({ accessToken, userProfile, onLogout }: Inst
       // Fetch materials
       const materialsRes = await fetch(
         `https://${projectId}.supabase.co/functions/v1/make-server-f64b0eb2/materials`,
-        { headers: { 'Authorization': `Bearer ${publicAnonKey}` } }
+        {
+          headers: {
+            'Authorization': `Bearer ${publicAnonKey}`,
+            'apikey': publicAnonKey,
+          },
+        }
       );
       const materialsData = await materialsRes.json();
       setMaterials(Array.isArray(materialsData) ? materialsData : []);
@@ -74,7 +84,12 @@ export function InstructorDashboard({ accessToken, userProfile, onLogout }: Inst
       // Fetch assessments
       const assessmentsRes = await fetch(
         `https://${projectId}.supabase.co/functions/v1/make-server-f64b0eb2/assessments`,
-        { headers: { 'Authorization': `Bearer ${publicAnonKey}` } }
+        {
+          headers: {
+            'Authorization': `Bearer ${publicAnonKey}`,
+            'apikey': publicAnonKey,
+          },
+        }
       );
       const assessmentsData = await assessmentsRes.json();
       setAssessments(Array.isArray(assessmentsData) ? assessmentsData : []);
@@ -82,7 +97,12 @@ export function InstructorDashboard({ accessToken, userProfile, onLogout }: Inst
       // Fetch submissions
       const submissionsRes = await fetch(
         `https://${projectId}.supabase.co/functions/v1/make-server-f64b0eb2/submissions`,
-        { headers: { 'Authorization': `Bearer ${accessToken}` } }
+        {
+          headers: {
+            'Authorization': `Bearer ${accessToken}`,
+            'apikey': publicAnonKey,
+          },
+        }
       );
       const submissionsData = await submissionsRes.json();
       setSubmissions(Array.isArray(submissionsData) ? submissionsData : []);
@@ -111,7 +131,10 @@ export function InstructorDashboard({ accessToken, userProfile, onLogout }: Inst
         `https://${projectId}.supabase.co/functions/v1/make-server-f64b0eb2/materials/upload`,
         {
           method: 'POST',
-          headers: { 'Authorization': `Bearer ${accessToken}` },
+          headers: {
+            'Authorization': `Bearer ${accessToken}`,
+            'apikey': publicAnonKey,
+          },
           body: formData,
         }
       );
@@ -148,6 +171,7 @@ export function InstructorDashboard({ accessToken, userProfile, onLogout }: Inst
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${accessToken}`,
+            'apikey': publicAnonKey,
           },
           body: JSON.stringify({
             title: assessmentTitle,
@@ -195,6 +219,7 @@ export function InstructorDashboard({ accessToken, userProfile, onLogout }: Inst
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${accessToken}`,
+            'apikey': publicAnonKey,
           },
           body: JSON.stringify({
             name: courseName,
@@ -240,6 +265,7 @@ export function InstructorDashboard({ accessToken, userProfile, onLogout }: Inst
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${accessToken}`,
+            'apikey': publicAnonKey,
           },
           body: JSON.stringify({
             submissionId: selectedSubmission.id,
@@ -269,7 +295,12 @@ export function InstructorDashboard({ accessToken, userProfile, onLogout }: Inst
     try {
       const response = await fetch(
         `https://${projectId}.supabase.co/functions/v1/make-server-f64b0eb2/submissions/${submissionId}/download`,
-        { headers: { 'Authorization': `Bearer ${accessToken}` } }
+        {
+          headers: {
+            'Authorization': `Bearer ${accessToken}`,
+            'apikey': publicAnonKey,
+          },
+        }
       );
 
       const data = await response.json();

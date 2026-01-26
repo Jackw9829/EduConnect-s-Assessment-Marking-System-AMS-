@@ -42,7 +42,12 @@ export function AdminDashboard({ accessToken, userProfile, onLogout }: AdminDash
       // Fetch courses
       const coursesRes = await fetch(
         `https://${projectId}.supabase.co/functions/v1/make-server-f64b0eb2/courses`,
-        { headers: { 'Authorization': `Bearer ${publicAnonKey}` } }
+        {
+          headers: {
+            'Authorization': `Bearer ${publicAnonKey}`,
+            'apikey': publicAnonKey,
+          },
+        }
       );
       const coursesData = await coursesRes.json();
       setCourses(Array.isArray(coursesData) ? coursesData : []);
@@ -50,7 +55,12 @@ export function AdminDashboard({ accessToken, userProfile, onLogout }: AdminDash
       // Fetch assessments
       const assessmentsRes = await fetch(
         `https://${projectId}.supabase.co/functions/v1/make-server-f64b0eb2/assessments`,
-        { headers: { 'Authorization': `Bearer ${publicAnonKey}` } }
+        {
+          headers: {
+            'Authorization': `Bearer ${publicAnonKey}`,
+            'apikey': publicAnonKey,
+          },
+        }
       );
       const assessmentsData = await assessmentsRes.json();
       setAssessments(Array.isArray(assessmentsData) ? assessmentsData : []);
@@ -58,7 +68,12 @@ export function AdminDashboard({ accessToken, userProfile, onLogout }: AdminDash
       // Fetch submissions
       const submissionsRes = await fetch(
         `https://${projectId}.supabase.co/functions/v1/make-server-f64b0eb2/submissions`,
-        { headers: { 'Authorization': `Bearer ${accessToken}` } }
+        {
+          headers: {
+            'Authorization': `Bearer ${accessToken}`,
+            'apikey': publicAnonKey,
+          },
+        }
       );
       const submissionsData = await submissionsRes.json();
       setSubmissions(Array.isArray(submissionsData) ? submissionsData : []);
@@ -66,7 +81,12 @@ export function AdminDashboard({ accessToken, userProfile, onLogout }: AdminDash
       // Fetch all grades
       const gradesRes = await fetch(
         `https://${projectId}.supabase.co/functions/v1/make-server-f64b0eb2/grades`,
-        { headers: { 'Authorization': `Bearer ${accessToken}` } }
+        {
+          headers: {
+            'Authorization': `Bearer ${accessToken}`,
+            'apikey': publicAnonKey,
+          },
+        }
       );
       const gradesData = await gradesRes.json();
       setGrades(Array.isArray(gradesData) ? gradesData : []);
@@ -104,6 +124,7 @@ export function AdminDashboard({ accessToken, userProfile, onLogout }: AdminDash
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${accessToken}`,
+            'apikey': publicAnonKey,
           },
           body: JSON.stringify({
             name: courseName,
@@ -140,6 +161,7 @@ export function AdminDashboard({ accessToken, userProfile, onLogout }: AdminDash
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${accessToken}`,
+            'apikey': publicAnonKey,
           },
           body: JSON.stringify({ verified }),
         }

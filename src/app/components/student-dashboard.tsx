@@ -38,7 +38,10 @@ export function StudentDashboard({ accessToken, userProfile, onLogout }: Student
       const materialsRes = await fetch(
         `https://${projectId}.supabase.co/functions/v1/make-server-f64b0eb2/materials`,
         {
-          headers: { 'Authorization': `Bearer ${publicAnonKey}` }
+          headers: {
+            'Authorization': `Bearer ${publicAnonKey}`,
+            'apikey': publicAnonKey,
+          }
         }
       );
       const materialsData = await materialsRes.json();
@@ -48,7 +51,10 @@ export function StudentDashboard({ accessToken, userProfile, onLogout }: Student
       const assessmentsRes = await fetch(
         `https://${projectId}.supabase.co/functions/v1/make-server-f64b0eb2/assessments`,
         {
-          headers: { 'Authorization': `Bearer ${publicAnonKey}` }
+          headers: {
+            'Authorization': `Bearer ${publicAnonKey}`,
+            'apikey': publicAnonKey,
+          }
         }
       );
       const assessmentsData = await assessmentsRes.json();
@@ -58,7 +64,10 @@ export function StudentDashboard({ accessToken, userProfile, onLogout }: Student
       const submissionsRes = await fetch(
         `https://${projectId}.supabase.co/functions/v1/make-server-f64b0eb2/submissions?studentId=${userProfile.id}`,
         {
-          headers: { 'Authorization': `Bearer ${accessToken}` }
+          headers: {
+            'Authorization': `Bearer ${accessToken}`,
+            'apikey': publicAnonKey,
+          }
         }
       );
       const submissionsData = await submissionsRes.json();
@@ -68,7 +77,10 @@ export function StudentDashboard({ accessToken, userProfile, onLogout }: Student
       const gradesRes = await fetch(
         `https://${projectId}.supabase.co/functions/v1/make-server-f64b0eb2/grades?studentId=${userProfile.id}`,
         {
-          headers: { 'Authorization': `Bearer ${accessToken}` }
+          headers: {
+            'Authorization': `Bearer ${accessToken}`,
+            'apikey': publicAnonKey,
+          }
         }
       );
       const gradesData = await gradesRes.json();
@@ -78,7 +90,10 @@ export function StudentDashboard({ accessToken, userProfile, onLogout }: Student
       const notificationsRes = await fetch(
         `https://${projectId}.supabase.co/functions/v1/make-server-f64b0eb2/notifications`,
         {
-          headers: { 'Authorization': `Bearer ${accessToken}` }
+          headers: {
+            'Authorization': `Bearer ${accessToken}`,
+            'apikey': publicAnonKey,
+          }
         }
       );
       const notificationsData = await notificationsRes.json();
@@ -88,7 +103,10 @@ export function StudentDashboard({ accessToken, userProfile, onLogout }: Student
       const reportRes = await fetch(
         `https://${projectId}.supabase.co/functions/v1/make-server-f64b0eb2/reports/student/${userProfile.id}`,
         {
-          headers: { 'Authorization': `Bearer ${accessToken}` }
+          headers: {
+            'Authorization': `Bearer ${accessToken}`,
+            'apikey': publicAnonKey,
+          }
         }
       );
       const reportData = await reportRes.json();
@@ -104,7 +122,10 @@ export function StudentDashboard({ accessToken, userProfile, onLogout }: Student
       const response = await fetch(
         `https://${projectId}.supabase.co/functions/v1/make-server-f64b0eb2/materials/${materialId}/download`,
         {
-          headers: { 'Authorization': `Bearer ${accessToken}` }
+          headers: {
+            'Authorization': `Bearer ${accessToken}`,
+            'apikey': publicAnonKey,
+          }
         }
       );
 
@@ -142,6 +163,7 @@ export function StudentDashboard({ accessToken, userProfile, onLogout }: Student
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${accessToken}`,
+            'apikey': publicAnonKey,
           },
           body: formData,
         }
